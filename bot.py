@@ -1,33 +1,14 @@
-from telegram import InlineKeyboardButton, InlineKeyboardMarkup
-from telegram.ext import ApplicationBuilder, CommandHandler
-import os
+import telebot
 
-BOT_TOKEN = os.environ.get("8009276855:AAFcYszwcH6pFKEgUt_dsdbzxx6UTOPxmnc")
-BOT_USERNAME = os.environ.get("YesBabysGames_Bot")
+BOT_TOKEN = "8009276855:AAFcYszwcH6pFKEgUt_dsdbzxx6UTOPxmnc"
 
-async def start(update, context):
-    user = update.effective_user
-    uname = user.username or user.first_name or "friend"
+bot = telebot.TeleBot(BOT_TOKEN)
 
-    text = (
-        f"Hi, @{uname}! 👋\n\n"
-        "Welcome to TapCoins Bot 🎮\n\n"
-        "TapCoins is what you want it to be."
+@bot.message_handler(commands=['start'])
+def welcome(message):
+    bot.send_message(
+        message.chat.id,
+        "👋 Welcome to Image City Bot 🌆"
     )
 
-    keyboard = [
-        [InlineKeyboardButton("🎮 Enter TapCoins", callback_data="enter")],
-        [InlineKeyboardButton(
-            "👥 Invite a Friend",
-            url=f"https://t.me/share/url?url=https://t.me/{BOT_USERNAME}"
-        )]
-    ]
-
-    await update.message.reply_text(
-        text=text,
-        reply_markup=InlineKeyboardMarkup(keyboard)
-    )
-
-app = ApplicationBuilder().token(BOT_TOKEN).build()
-app.add_handler(CommandHandler("start", start))
-app.run_polling()
+bot.infinity_polling()
