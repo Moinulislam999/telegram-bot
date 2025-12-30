@@ -2,8 +2,8 @@ from telegram import InlineKeyboardButton, InlineKeyboardMarkup
 from telegram.ext import ApplicationBuilder, CommandHandler
 import os
 
-BOT_TOKEN = os.environ.get("BOT_TOKEN")
-BOT_USERNAME = os.environ.get("BOT_USERNAME")
+BOT_TOKEN = os.environ.get("8009276855:AAFcYszwcH6pFKEgUt_dsdbzxx6UTOPxmnc")
+BOT_USERNAME = os.environ.get("YesBabysGames_Bot")
 
 async def start(update, context):
     user = update.effective_user
